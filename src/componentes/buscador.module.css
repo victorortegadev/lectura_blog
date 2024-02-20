@@ -1,0 +1,54 @@
+.div_capa2_buscador {
+    transition: all .5s;
+   
+    position: relative;
+    padding: 2rem 0;
+}
+.div_buscador {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    border-bottom: 1px solid white;
+}
+.icon_buscador{
+    height: 1.7rem;
+    width: 1.7rem;
+    color: white;
+    display: flex;
+}
+.div_icon_buscador {
+    padding-right: .7rem;
+    display: flex;
+   align-items: flex-end;
+    padding-bottom: 3px;
+    z-index: 100;
+}
+.empujar_buscador{
+    overflow: hidden;
+    color: white;
+  
+   display:flex ;
+   align-items: flex-end;
+   padding-bottom: 6px;
+}
+.div_input{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    z-index: 100;
+}
+.buscador{
+    outline: none;
+    caret-color: white;
+    color: white;
+    padding-bottom: 6px;
+    padding-top: 10px;
+}
+.detector_clicks{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    
+    left: 0px;
+    top:0px;
+
+    z-index: 50;
+}

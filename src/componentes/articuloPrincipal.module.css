@@ -1,0 +1,25 @@
+.h3 {
+    font-size: 1.6rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+.texto {
+
+    margin-top: 2.3rem;
+    margin-bottom: 3rem;
+    
+    overflow-wrap: break-word;
+        word-break: break-word;
+    word-wrap: break-word;
+
+    max-height: 10rem;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    padding: 0px 5px;
+
+ 
+}
+.quill {
+    width: 100%;
+}

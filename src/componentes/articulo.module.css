@@ -1,0 +1,27 @@
+.article {
+    background-color: white;
+    padding: 1.5rem;
+}
+.post {
+    position: relative;
+    background-color: white;
+}
+.button {
+    
+    float: right;
+}
+.fecha {
+    
+}
+.puntos{
+    position: absolute;
+   background: linear-gradient(to left,#ffffff 0,#ffffff 20%,rgba(255, 255, 255, 0) 100%);
+   width: 96px;
+   bottom: 0;
+   float: right;
+   right: 0;
+}
+.puntos::after{
+    content: "\2026";
+    float: right;
+}

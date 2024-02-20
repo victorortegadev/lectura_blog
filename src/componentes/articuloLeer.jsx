@@ -1,0 +1,42 @@
+'use client'
+import { useRouter} from "next/navigation";
+import { useEffect} from "react";
+import Bajo2 from './bajo2'
+import { useQuill } from "react-quilljs"
+
+import styles from './articulo.module.css'
+import './articulo.css'
+
+import stylesLeer from './articuloLeer.module.css'
+
+export default function ArticuloLeer({titulo, texto, id, fecha}) {
+
+    const router = useRouter()
+
+    const {quill, quillRef} = useQuill({
+        modules: { toolbar: false },
+        readOnly: true
+    })
+    
+    useEffect(() => { quill && texto? quill.setContents(JSON.parse(texto)) : '' }, [quill? quill : '', texto])
+
+    return (
+        <article className={`${styles.article} ${stylesLeer.article_leer}`}>
+            <div className={styles.post}>
+                <div className={stylesLeer.nota_leer}>
+                    <h3 onClick={() => {router.push(`/leermas/${id}`)}} className={stylesLeer.h3}> {titulo} </h3>
+                    <button className={styles.button}> icono </button>
+                    <a onClick={() => {router.push('/leermas')}} className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</a>
+                    <div className={stylesLeer.texto}>
+
+                    <div ref={quillRef} >
+                    
+                    </div>
+
+                    </div>
+                </div>
+                <Bajo2 clave={id}/>
+            </div>
+        </article>   
+    );
+}

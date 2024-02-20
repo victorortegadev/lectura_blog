@@ -1,0 +1,11 @@
+.bajo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.boton_comentar{
+    color: #2196f3;
+}
+.boton_leer_mas {
+    color: #2196f3;   
+}

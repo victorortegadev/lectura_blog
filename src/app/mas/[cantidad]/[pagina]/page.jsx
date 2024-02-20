@@ -2,11 +2,12 @@
 import Header from "@/componentes/header";
 import Main from "@/componentes/main";
 
-export default function Home() {
+export default function Leerid({params}) {
+ 
   return (
     <>
       <Header tipoEstilo={'styles1'}/>
-      <Main/>
+      <Main params={params} />
     </>
   );
 }

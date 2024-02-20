@@ -1,0 +1,16 @@
+.h3 {
+    font-size: 1.3rem;
+
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+.texto {
+
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    
+    overflow-wrap: break-word;
+        word-break: break-word;
+    word-wrap: break-word;
+    padding: 0px 5px;
+}

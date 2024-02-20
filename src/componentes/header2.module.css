@@ -1,0 +1,25 @@
+.div_icon_tres {
+    width: fit-content;
+    margin: 2rem 0;
+}
+.h1 { 
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    width: fit-content;
+    white-space: nowrap;
+
+    position: absolute;
+    margin-left: calc(3.7rem + 4px) ;
+
+    transition: all .5s;
+}
+.desaparecer{
+    opacity: 0;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}

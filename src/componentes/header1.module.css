@@ -1,0 +1,27 @@
+.div_s1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.h1 { 
+    font-size: 3em;
+    text-align: center;
+    color: white;
+    line-height: 3rem;
+}
+.navbar {
+   padding-bottom: 2rem;
+
+}
+.icon_tres_flecha{
+    height: 1.7rem;
+    width: fit-content;
+    color: white;
+    margin: 1rem;   
+}
+.div_icon_tres_flecha{
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+    left: -1rem;
+}

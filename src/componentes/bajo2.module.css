@@ -1,0 +1,76 @@
+.section{
+    padding: 0 1rem;
+    padding-top: 1.7rem;
+    padding-bottom: 3.5rem;
+}
+.text:focus{
+    outline:none;
+} 
+.comentario{
+  
+    padding-bottom: 1.5rem;
+}
+.responder {
+    color: #2196f3;   
+    padding-top: .5rem;
+}
+.cuadro{
+}
+.nota{
+
+    padding-bottom: 1rem;
+}
+.respuestas{
+    margin-left: 3rem;
+    padding-bottom: 2rem;
+}
+.respuesta {
+
+    padding-bottom: 2rem;
+}
+.listadoC {
+    padding: 0 2rem;
+}
+.caja {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+.caja_bajo2{
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+.caja_comentario {
+   
+    padding: 1.5rem 2rem;
+}
+.div_text_btpublicar {
+ 
+    height: fit-content;
+    padding-left: .3rem;
+}
+.publicar {
+    background: rgba(153,153,153,.1);
+    border-radius: .1rem;
+    padding: .5rem .5rem;
+    margin-top: .7rem;
+}
+.img {
+    border-radius: 50%;
+    
+    height: 2rem;
+    width: 2rem;
+}
+.text{
+    border-bottom: 1px solid grey;
+    resize:none;
+    width: 100%;
+    padding-bottom: .15rem;
+}
+.div_img{
+    height: 100%;
+}
+.relleno {
+    height: 2.7rem;
+    width: 2.7rem;
+}
