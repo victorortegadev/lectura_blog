@@ -18,7 +18,7 @@ export default function ArticuloPrincipal({titulo, id, fecha, textoplanovisible,
     const [numeroComentarios, setNumeroComentarios]  = useState('')
 
     async function  pedirNumeroDeComentarios(id) { 
-        const response = await fetch(`http://localhost:3001/api/comentarios/numero/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/numero/${id}`)
       
         const numeroComentarios = await response.json()
         return numeroComentarios

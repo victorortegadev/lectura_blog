@@ -19,7 +19,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     const [focusTextareaBajo2, setFocusTextareaBajo2] = focusTextareaBajo2Prop
 
     async function  crearCometario (comentario) {
-        const response = await fetch('http://localhost:3001/api/comentarios/comentario', 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
             {   
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -32,7 +32,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     }
 
     async function  pedirRespuestas(clave) { 
-        const response = await fetch(`http://localhost:3001/api/comentarios/respuestas/${clave}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/respuestas/${clave}`)
       
         const comentarios = await response.json()
         return comentarios

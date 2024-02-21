@@ -14,7 +14,7 @@ export default function Main({params}) {
   const [displayS, setDisplayS] = useState(true)
 
   async function  pedirEntradas  () { 
-    const response = await fetch('http://localhost:3001/api/entradas')
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/entradas`)
   
     const entradas = await response.json()
     return entradas

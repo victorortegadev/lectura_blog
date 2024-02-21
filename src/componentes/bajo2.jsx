@@ -17,13 +17,13 @@ export default function Bajo2({clave}) {
     const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
 
     async function  pedirComentarios(clave) { 
-        const response = await fetch(`http://localhost:3001/api/comentarios/${clave}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/${clave}`)
       
         const comentarios = await response.json()
         return comentarios
     }
     async function  crearCometario (comentario) {
-        const response = await fetch('http://localhost:3001/api/comentarios/comentario', 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
             {   
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},

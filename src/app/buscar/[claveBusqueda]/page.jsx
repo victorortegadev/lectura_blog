@@ -8,7 +8,7 @@ export default function Leerid(props) {
     const [encontrado, setEncontrado] = useState([])
 
     async function  buscarEntradas (claveBusqueda) { 
-        const response = await fetch(`http://localhost:3001/api/buscarEntradas/${claveBusqueda}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/buscarEntradas/${claveBusqueda}`)
       
         const resultado = await response.json()
         return resultado 
