@@ -3,9 +3,6 @@ import ArticuloLeer from "@/componentes/articuloLeer";
 import Header from "@/componentes/header";
 import { useEffect, useState } from "react";
 
-import styles from './leerid.module.css'
-
-
 export default function Leerid(props) {
 
   async function  pedirEntrada (id) { 
@@ -22,7 +19,7 @@ export default function Leerid(props) {
   return (
     <>
       <Header tipoEstilo={'styles2'}/>
-      <main className={styles.main}>
+      <main>
         { <ArticuloLeer {...entrada}/> }
       </main>
     </>

@@ -47,7 +47,7 @@ export default function Main({params}) {
 
   return (
     <>
-      <main  className={styles.main}>    
+      <main>    
         {nueva.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada} ultimoArticuloProp={ nueva[nueva.length - 1].id == entrada.id ? 'ultimoArticulo' : ''}/> ) }
         <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <a  className={styles.mas_a}  >MÁS ENTRADAS</a></div>
       </main>
