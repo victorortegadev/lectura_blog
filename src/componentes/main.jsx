@@ -42,7 +42,7 @@ export default function Main({params}) {
   let cantidad= params? params.cantidad : 4
   let pagina = params? params.pagina : 1
   let resta = cantidad - 1
-  useEffect(() =>{pedirEntradas().then((entradas) => setEntrada(entradas))},[])
+  useEffect(() =>{pedirEntradas().then((entradas) => {setEntrada(entradas); console.log('pedirentardas main')} )},[])
   useEffect(()=> { entrada.length > 0 ? pru((cantidad * pagina) - resta, cantidad * pagina ) : ''}, [entrada])
 
   return (

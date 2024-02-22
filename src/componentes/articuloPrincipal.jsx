@@ -24,13 +24,13 @@ export default function ArticuloPrincipal({titulo, id, fecha, textoplanovisible,
         return numeroComentarios
     }
 
-    useEffect(()=> {pedirNumeroDeComentarios(id).then((n)=> {setNumeroComentarios(n[0].count) }), []})
+    useEffect(()=> {pedirNumeroDeComentarios(id).then((n)=> { setNumeroComentarios(n[0].count); console.log('pedirnumeros articuloPrincipal') })}, [])
 
     return (
         <article  className={styles.article} style={{marginBottom:  ultimoArticuloProp == 'ultimoArticulo'? '' : '1rem'}} >
             <div className={styles.post}>
                 <h3 onClick={() => {router.push(`/leermas/${id}`)}} className={stylesPrincipal.h3}> {titulo} </h3>
-                <button className={styles.button}> icono </button>
+                <button className={styles.button}> {id} </button>
                 <a /*onClick={() => {router.push('/leermas')}}*/ className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</a>
                 <div ref={textoPost} className={stylesPrincipal.texto}>
 
@@ -44,7 +44,7 @@ export default function ArticuloPrincipal({titulo, id, fecha, textoplanovisible,
                     >
                     </p>
                 </div>
-                <Bajo1 id = {id} numeroProp= {numeroComentarios}/>
+                <Bajo1 id = {id} numeroProp= {numeroComentarios }/>
             </div>
         </article>   
     );
