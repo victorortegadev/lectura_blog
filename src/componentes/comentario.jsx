@@ -61,7 +61,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
 
         return(`${day} de ${month} de ${year}, ${hour}:${minutes}`)
     }
-    {  listaRespuestas.map((respuesta) => <Respuestas scrollRes={scrollRes}  key={respuesta.id} {...respuesta} /> )}
+    //{  listaRespuestas.map((respuesta) => <Respuestas scrollRes={scrollRes}  key={respuesta.id} {...respuesta} /> )}
     return (
         <div ref={comentarioRef}  className={styles.comentario}>
             <div className={styles.cuadro}>
