@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './bajo2.module.css'
 import Comentario from './comentario'
 
-export default function Bajo2({clave}) {
+export default function Bajo2({clave, listadoComentariosProp2}) {
 
-    const [listadoCS, setListadoCS] = useState('inicial')
+    const [listadoCS, setListadoCS] = useState([])
     const textoCRef = useRef(null)
     const [nuevoComentario, setNuevoComentario] = useState(false)
 
@@ -16,12 +16,12 @@ export default function Bajo2({clave}) {
 
     const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
 
-    async function  pedirComentarios(clave) { 
+  /*  async function  pedirComentarios(clave) { 
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/${clave}`)
       
         const comentarios = await response.json()
         return comentarios
-    }
+    }*/
     async function  crearCometario (comentario) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
             {   
@@ -35,7 +35,7 @@ export default function Bajo2({clave}) {
         return comentarioCreado
     }
 
-    useEffect(()=> { clave? pedirComentarios(clave).then( comentarios=> {setListadoCS(comentarios); setNuevoComentario(false)}) : ''}, [nuevoComentario, clave])
+   // useEffect(()=> { clave? pedirComentarios(clave).then( comentarios=> {setListadoCS(comentarios); setNuevoComentario(false)}) : ''}, [nuevoComentario, clave])
 
     useEffect(() => {if(publicar2Iniciado && listadoCS.length > 0){ setScrollCom(listadoCS[listadoCS.length - 1].id ) }}, [listadoCS])
     
@@ -56,16 +56,17 @@ export default function Bajo2({clave}) {
         ];
 
         return(`${day} de ${month} de ${year}, ${hour}:${minutes}`)
+        
     }
-
+//{listadoComentariosProp2.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
     return (
         <section style={{borderTop:listadoCS.length > 0? 'dotted grey' : ''}} className={styles.section}>
             <div className={styles.listadoC}>
 
-                {listadoCS == 'inicial'? '' : listadoCS.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
+            { listadoComentariosProp2 == undefined?'' : listadoComentariosProp2.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
                
             </div>
-            <div style={{display: listadoCS == 'inicial'? 'none' : 'grid'}} className={`${styles.caja} ${styles.caja_bajo2}`}>
+            <div className={`${styles.caja} ${styles.caja_bajo2}`}>
                 <div className={styles.div_img}>
                     <img className={styles.img} src='https://resources.blogblog.com/img/anon36.png'/>
                 </div>

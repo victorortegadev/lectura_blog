@@ -6,23 +6,32 @@ import styles from "./pageLeermas.module.css"
 
 export default function Leerid(props) {
 
+  const [entrada, setEntrada] = useState();
+  const [listadoComentarios, setListadoComentarios] = useState()
+
   async function  pedirEntrada (id) { 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/entrada/${id}`)
   
     const entradaRespuesta = await response.json()
     return entradaRespuesta 
   }
-
-  const [entrada, setEntrada] = useState();
-  useEffect(()=> {pedirEntrada(props.params.idEntrada).then(entradaRespuesta => setEntrada(entradaRespuesta)) },[]) 
+  async function  pedirComentarios(id) { 
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/${id}`)
   
+    const comentarios = await response.json()
+    return comentarios
+}
+
+useEffect(()=> {pedirEntrada(props.params.idEntrada).then(entradaRespuesta => setEntrada(entradaRespuesta)) },[]) 
+
+useEffect(()=> {pedirComentarios(props.params.idEntrada).then( comentarios=> {setListadoComentarios(comentarios)}) }, [])
 
   return (
     <>
       <Header tipoEstilo={'styles2'}/>
-      <div  style={{display:entrada? 'block' : 'none'}}>
+      <div  style={{display:entrada && listadoComentarios? 'block' : 'none'}}>
         <main>
-          { <ArticuloLeer {...entrada}/> }
+          <ArticuloLeer {...entrada} listadoComentariosProp= {listadoComentarios} /> 
         </main>
         <footer className={styles.footer}>
             <p className={styles.footer_p}>Con la tecnología de nextjs</p>

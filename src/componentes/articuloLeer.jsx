@@ -1,6 +1,6 @@
 'use client'
 import { useRouter} from "next/navigation";
-import { /*useEffect,*/ useRef} from "react";
+import { /*useEffect,*/ useRef, useState} from "react";
 import Bajo2 from './bajo2'
 //import { useQuill } from "react-quilljs"
 
@@ -9,7 +9,7 @@ import './articulo.css'
 
 import stylesLeer from './articuloLeer.module.css'
 
-export default function ArticuloLeer({titulo, textoplanovisible, id, fecha}) {
+export default function ArticuloLeer({titulo, textoplanovisible, id, fecha, listadoComentariosProp}) {
 
     const router = useRouter()
 
@@ -20,6 +20,7 @@ export default function ArticuloLeer({titulo, textoplanovisible, id, fecha}) {
     const quillRef = useRef(null)
     
     //useEffect(() => { quill && texto? quill.setContents(JSON.parse(texto)) : '' }, [quill? quill : '', texto])
+
 
     return (
         <article className={`${styles.article} ${stylesLeer.article_leer}`}>
@@ -36,7 +37,7 @@ export default function ArticuloLeer({titulo, textoplanovisible, id, fecha}) {
 
                     </div>
                 </div>
-                <Bajo2 clave={id}/>
+                    <Bajo2 clave={id} listadoComentariosProp2={listadoComentariosProp}/>
             </div>
         </article>   
     );
