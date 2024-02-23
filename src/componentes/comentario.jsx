@@ -39,7 +39,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     }
 
 
-    useEffect(()=> { id? pedirRespuestas(id).then( (comentarios)=> {setListaRespuestas(comentarios); setNuevaRespuesta(false)} ) : ''}, [nuevaRespuesta, id])
+   // useEffect(()=> { id? pedirRespuestas(id).then( (comentarios)=> {setListaRespuestas(comentarios); setNuevaRespuesta(false)} ) : ''}, [nuevaRespuesta, id])
 
     useEffect(() => {if(publicarIniciado && listaRespuestas.length > 0){ setScrollRes(listaRespuestas[listaRespuestas.length - 1].id ) }}, [listaRespuestas])
 
@@ -61,7 +61,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
 
         return(`${day} de ${month} de ${year}, ${hour}:${minutes}`)
     }
-    
+    {  listaRespuestas.map((respuesta) => <Respuestas scrollRes={scrollRes}  key={respuesta.id} {...respuesta} /> )}
     return (
         <div ref={comentarioRef}  className={styles.comentario}>
             <div className={styles.cuadro}>
@@ -71,7 +71,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
                 </div>
                 <div  className={listaRespuestas.length > 0 ? styles.respuestas : ''}>
 
-                   {  listaRespuestas.map((respuesta) => <Respuestas scrollRes={scrollRes}  key={respuesta.id} {...respuesta} /> )}
+               
 
                 </div>
             </div>
