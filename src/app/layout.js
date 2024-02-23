@@ -16,10 +16,6 @@ export default function RootLayout({children}) {
         <div className={styles.contenedor_fotografia}></div>
         <div className={styles.marco}> 
           {children}
-          <footer className={styles.footer}>
-            <p className={styles.footer_p}>Con la tecnología de nextjs</p>
-            <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
-          </footer>
         </div>
       </body>
     </html>

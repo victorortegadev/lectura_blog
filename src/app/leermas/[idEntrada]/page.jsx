@@ -2,26 +2,33 @@
 import ArticuloLeer from "@/componentes/articuloLeer";
 import Header from "@/componentes/header";
 import { useEffect, useState } from "react";
+import styles from "./pageLeermas.module.css"
 
 export default function Leerid(props) {
 
   async function  pedirEntrada (id) { 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/entrada/${id}`)
   
-    const entrada = await response.json()
-    return entrada 
+    const entradaRespuesta = await response.json()
+    return entradaRespuesta 
   }
 
   const [entrada, setEntrada] = useState();
-  useEffect(()=> {pedirEntrada(props.params.idEntrada).then(entrada2 => setEntrada(entrada2)) },[]) 
+  useEffect(()=> {pedirEntrada(props.params.idEntrada).then(entradaRespuesta => setEntrada(entradaRespuesta)) },[]) 
   
 
   return (
     <>
       <Header tipoEstilo={'styles2'}/>
-      <main>
-        { <ArticuloLeer {...entrada}/> }
-      </main>
+      <div  style={{display:entrada? 'block' : 'none'}}>
+        <main>
+          { <ArticuloLeer {...entrada}/> }
+        </main>
+        <footer className={styles.footer}>
+            <p className={styles.footer_p}>Con la tecnología de nextjs</p>
+            <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
+        </footer>
+      </div>
     </>
   );
 }

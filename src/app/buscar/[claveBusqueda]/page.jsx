@@ -2,6 +2,7 @@
 import ArticuloPrincipal from "@/componentes/articuloPrincipal";
 import Header from "@/componentes/header";
 import { useEffect, useState } from "react";
+import styles from "./pageBuscar.module.css"
 
 export default function Leerid(props) {
 
@@ -18,9 +19,15 @@ export default function Leerid(props) {
   return (
     <>
       <Header  tipoEstilo={'styles1'}/>
-      <main >
-        {encontrado.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada}  /> ) }
-      </main>
+      <div style={{display:encontrado.length > 0? 'block' : 'none'}}>
+        <main >
+          {encontrado.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada}  /> ) }
+        </main>
+        <footer className={styles.footer}>
+            <p className={styles.footer_p}>Con la tecnología de nextjs</p>
+            <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
+        </footer>
+      </div>
     </>
 )
 }

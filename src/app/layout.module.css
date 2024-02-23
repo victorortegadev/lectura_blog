@@ -9,25 +9,10 @@
     position: relative;
     padding: 0 1rem;
 }
-.footer {
-    text-align: center;
-    padding-top: 2.5rem;
-    padding-bottom: 2.7rem;
-
-}
 .contenedor_fotografia{
     height: 480px;
     position: absolute;
     width: 100%;
     z-index: 0;
     background-color: rgb(150, 129, 129);
-}
-.footer_h5{
-    font-size: .7em;
-}
-.footer_h5 span{
-    color: #2196f3; 
-}
-.footer_p{
-   color: #2196f3;  
 }

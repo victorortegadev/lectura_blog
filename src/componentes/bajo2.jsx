@@ -5,7 +5,7 @@ import Comentario from './comentario'
 
 export default function Bajo2({clave}) {
 
-    const [listadoCS, setListadoCS] = useState([])
+    const [listadoCS, setListadoCS] = useState('inicial')
     const textoCRef = useRef(null)
     const [nuevoComentario, setNuevoComentario] = useState(false)
 
@@ -62,10 +62,10 @@ export default function Bajo2({clave}) {
         <section style={{borderTop:listadoCS.length > 0? 'dotted grey' : ''}} className={styles.section}>
             <div className={styles.listadoC}>
 
-                {listadoCS.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
+                {listadoCS == 'inicial'? '' : listadoCS.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
                
             </div>
-            <div className={`${styles.caja} ${styles.caja_bajo2}`}>
+            <div style={{display: listadoCS == 'inicial'? 'none' : 'grid'}} className={`${styles.caja} ${styles.caja_bajo2}`}>
                 <div className={styles.div_img}>
                     <img className={styles.img} src='https://resources.blogblog.com/img/anon36.png'/>
                 </div>

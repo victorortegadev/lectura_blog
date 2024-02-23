@@ -48,10 +48,19 @@ export default function Main({params}) {
 
   return (
     <>
-      <main>    
-        {nueva.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada} ultimoArticuloProp={ nueva[nueva.length - 1].id == entrada.id ? 'ultimoArticulo' : ''}/> ) }
-        <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <a className={styles.mas_a}>MÁS ENTRADAS</a></div>
-      </main>
+      <div style={{display:nueva.length > 0? 'block' : 'none'}}>
+        <main className={styles.main}>    
+          {nueva.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada} ultimoArticuloProp={ nueva[nueva.length - 1].id == entrada.id ? 'ultimoArticulo' : ''}/> ) }
+          <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <a className={styles.mas_a}>MÁS ENTRADAS</a></div>
+        </main>
+        <footer className={styles.footer}>
+            <p className={styles.footer_p}>Con la tecnología de nextjs</p>
+            <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
+        </footer>
+      </div>
+      <div className={styles.reemplazo} style={{display:nueva.length <= 0? 'block' : 'none'}}>
+        cargando...
+      </div>
     </>
-  );
+  )
 }
