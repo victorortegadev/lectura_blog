@@ -36,7 +36,7 @@ export default function Buscador({abrirProp}) {
             <div 
               /*style={{opacity: ? 1 :  .7}}*/
               className={`${styles2.empujar_buscador} no_cerrar`}
-              onClick={() => {buscadorRef.current.value != ''? router.push(`/buscar/${buscadorRef.current.value.replaceAll('\\', '')}`) : ''}} 
+              onClick={() => {buscadorRef.current.value != ''? router.push(`/buscar/${buscadorRef.current.value.replaceAll('\\', '').toLowerCase()}`) : ''}} 
             >
               BUSCAR
             </div>

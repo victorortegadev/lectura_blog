@@ -15,7 +15,7 @@ export default function Leerid(props) {
         return resultado 
     }
 
-    useEffect(() => {buscarEntradas(props.params.claveBusqueda).then((data)=>   setEncontrado(data) )}, [] )
+    useEffect(() => {buscarEntradas(props.params.claveBusqueda).then((data)=>   {setEncontrado(data); } )}, [] )
   return (
     <>
       <Header  tipoEstilo={'styles1'}/>
