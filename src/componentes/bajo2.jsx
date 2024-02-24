@@ -1,20 +1,18 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import {useRef, useState } from 'react'
 import styles from './bajo2.module.css'
 import Comentario from './comentario'
 
 export default function Bajo2({clave, listadoComentariosProp2}) {
 
-
     const [listadoComentarios, setListadoComentarios] = listadoComentariosProp2 
     const textoCRef = useRef(null)
 
     const [scrollCom, setScrollCom] = useState('')
-    const [publicar2Iniciado, setPublicar2Iniciado] = useState(false)
 
-    const [ focusTextareaBajo2, setFocusTextareaBajo2] = useState(false)
+    const [ focusTextarea, setFocusTextarea] = useState(false)
 
-    const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
+   // const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
 
     async function  crearCometario (comentario) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
@@ -28,9 +26,6 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
         const comentarioCreado = await response.json()
         return comentarioCreado
     }
-
-
-    useEffect(() => {if(publicar2Iniciado){ setScrollCom(listadoComentarios[listadoComentarios.length - 1].id ); setPublicar2Iniciado(false) }}, [publicar2Iniciado])
     
     const [idcomentario, setIdComentario] = useState('')
 
@@ -56,7 +51,7 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
         <section style={{borderTop: {if(listadoComentarios){listadoComentarios.length > 0? 'dotted grey' : ''}} }} className={styles.section}>
             <div className={styles.listadoC}>
 
-            { listadoComentarios == undefined?'' : listadoComentarios.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
+                { listadoComentarios == undefined?'' : listadoComentarios.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaProp= {[focusTextarea, setFocusTextarea]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
                
             </div>
             <div className={`${styles.caja} ${styles.caja_bajo2}`}>
@@ -66,14 +61,14 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
                 
                 <div className={styles.div_text_btpublicar}>
                     <div 
-                        style={{display:  focusTextareaBajo2? 'block' : 'none'}} 
+                        style={{display:  focusTextarea == 'focus comentario'? 'block' : 'none'}} 
                         className={styles.relleno}
                     >
                     </div>
-                    <textarea onFocus={()=> { setFocusTextareaComentario(false), setFocusTextareaBajo2(true)} } rows="1" ref={textoCRef} className={styles.text}>
+                    <textarea onFocus={()=> { setFocusTextarea('focus comentario')} } rows="1" ref={textoCRef} className={styles.text}>
                     </textarea>
                     <button 
-                         style={{display: focusTextareaBajo2? 'block' : 'none'}} 
+                        style={{display: focusTextarea == 'focus comentario'? 'block' : 'none'}} 
                         onClick={()=> {
                                 if (textoCRef.current.value != '' )
                                 {
@@ -83,10 +78,8 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
                                             fecha: obtenerFecha(),
                                             clave_entrada: clave
                                         }
-                                    ).then( nuevoComentario => { setListadoComentarios([...listadoComentarios, nuevoComentario ])})
+                                    ).then( nuevoComentario => { setListadoComentarios([...listadoComentarios, nuevoComentario ]); setScrollCom(nuevoComentario.id) })
                                     textoCRef.current.value = ''
-
-                                    setPublicar2Iniciado(true)
                                 }
                             }
                         } 

@@ -24,7 +24,7 @@ export default function ArticuloPrincipal({titulo, id, fecha, textoplanovisible,
         return numeroComentarios
     }
 
-    useEffect(()=> {pedirNumeroDeComentarios(id).then((n)=> { setNumeroComentarios(n[0].count); console.log('pedirnumeros articuloPrincipal') })}, [])
+    useEffect(()=> {pedirNumeroDeComentarios(id).then((n)=> { setNumeroComentarios(n[0].count) })}, [])
 
     return (
         <article  className={styles.article} style={{marginBottom:  ultimoArticuloProp == 'ultimoArticulo'? '' : '1rem'}} >

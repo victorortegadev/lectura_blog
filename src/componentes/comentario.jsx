@@ -3,19 +3,17 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './bajo2.module.css'
 import Respuestas from './respuestas';
 
-export default function Comentario({id, fecha, texto, idcomentarioP, clave, scrollCom, focusTextareaBajo2Prop, focusTextareaComentarioProp}) {
+export default function Comentario({id, fecha, texto, idcomentarioP, clave, scrollCom, focusTextareaProp}) {
 
     const [idcomentario, setIdComentario] = idcomentarioP
     const textoCRef = useRef(null)
     const [listaRespuestas, setListaRespuestas] = useState([])
 
     const [scrollRes, setScrollRes] = useState('')
-    const [publicarIniciado, setPublicarIniciado] = useState(false)
 
     const comentarioRef = useRef(null)
 
-    const [focusTextareaComentario, setFocusTextareaComentario] = focusTextareaComentarioProp
-    const [focusTextareaBajo2, setFocusTextareaBajo2] = focusTextareaBajo2Prop
+    const [focusTextarea, setFocusTextarea] = focusTextareaProp
 
     async function  crearCometario (comentario) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
@@ -38,12 +36,10 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     }
 
 
-    useEffect(()=> { id? pedirRespuestas(id).then( (comentarios)=> {setListaRespuestas(comentarios)} ) : ''}, [id])
-
-    useEffect(() => {if(publicarIniciado && listaRespuestas.length > 0){ setScrollRes(listaRespuestas[listaRespuestas.length - 1].id ) }}, [listaRespuestas])
+    useEffect(()=> { id? pedirRespuestas(id).then( (respuestas)=> {setListaRespuestas(respuestas)} ) : ''}, [id])
 
     useEffect(() => { scrollCom == id ? comentarioRef.current.scrollIntoView(/*{behavior: 'instant'}*/) : ''}, [scrollCom])
-
+ 
     const obtenerFecha2 = ()=> {
 
         const date = new Date()
@@ -63,7 +59,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     
     return (
         <div ref={comentarioRef}  className={styles.comentario}>
-            <div className={styles.cuadro}>
+            <div>
                 <div className={styles.nota}>
                     <p>Anónimo{id} - <span>{fecha}</span></p>
                     <p>{texto}</p>
@@ -74,7 +70,6 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
 
                 </div>
             </div>
-            
                   
             <div style={{display: id == idcomentario? 'grid' : 'none'}} className={ `${styles.caja} ${styles.caja_comentario}`}>
                 <div className={styles.div_img}>
@@ -83,14 +78,14 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
                 
                 <div className={styles.div_text_btpublicar}>
                     <div 
-                        style={{display:  focusTextareaComentario? 'block' : 'none'}} 
+                        style={{display:  focusTextarea == 'focus respuesta'? 'block' : 'none'}} 
                         className={styles.relleno}
                     >
                     </div>
-                    <textarea onFocus={()=> {setFocusTextareaBajo2(false), setFocusTextareaComentario(true) } } rows="1" ref={textoCRef} className={styles.text}>
+                    <textarea onFocus={()=> {setFocusTextarea('focus respuesta') } } rows="1" ref={textoCRef} className={styles.text}>
                     </textarea>
                     <button 
-                        style={{display: focusTextareaComentario? 'block' : 'none'}} 
+                        style={{display: focusTextarea == 'focus respuesta'? 'block' : 'none'}} 
                         onClick={()=> {
                                 if (textoCRef.current.value != '' )
                                 {
@@ -101,10 +96,9 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
                                             clave_entrada: clave,
                                             clave_respuesta: id
                                         }
-                                    ).then( nuevoRespuesta => { setListaRespuestas([...listaRespuestas, nuevoRespuesta ])}) 
+                                    ).then( nuevoRespuesta => { setListaRespuestas([...listaRespuestas, nuevoRespuesta ]); setScrollRes(nuevoRespuesta.id)}) 
                                     textoCRef.current.value = ''
                                     setIdComentario('') 
-                                    setPublicarIniciado(true)
                                 }
                             
                             }
@@ -117,7 +111,11 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
             </div>
 
             <button 
-                onClick={()=> { if(id == idcomentario){setIdComentario('')}else{setIdComentario(id), setFocusTextareaComentario(false), setFocusTextareaBajo2(false)} } } 
+                onClick={()=> { 
+                        if(id == idcomentario) {setIdComentario('')} 
+                        else{setIdComentario(id), setFocusTextarea(false)} 
+                    } 
+                } 
                 className={styles.responder}
             >
                 RESPONDER
