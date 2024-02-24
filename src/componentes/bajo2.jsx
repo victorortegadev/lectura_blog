@@ -5,9 +5,9 @@ import Comentario from './comentario'
 
 export default function Bajo2({clave, listadoComentariosProp2}) {
 
-    const [listadoCS, setListadoCS] = useState([])
+
+    const [listadoComentarios, setListadoComentarios] = listadoComentariosProp2 
     const textoCRef = useRef(null)
-    const [nuevoComentario, setNuevoComentario] = useState(false)
 
     const [scrollCom, setScrollCom] = useState('')
     const [publicar2Iniciado, setPublicar2Iniciado] = useState(false)
@@ -16,12 +16,6 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
 
     const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
 
-  /*  async function  pedirComentarios(clave) { 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/${clave}`)
-      
-        const comentarios = await response.json()
-        return comentarios
-    }*/
     async function  crearCometario (comentario) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
             {   
@@ -35,9 +29,8 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
         return comentarioCreado
     }
 
-   // useEffect(()=> { clave? pedirComentarios(clave).then( comentarios=> {setListadoCS(comentarios); setNuevoComentario(false)}) : ''}, [nuevoComentario, clave])
 
-    useEffect(() => {if(publicar2Iniciado && listadoCS.length > 0){ setScrollCom(listadoCS[listadoCS.length - 1].id ) }}, [listadoCS])
+    useEffect(() => {if(publicar2Iniciado){ setScrollCom(listadoComentarios[listadoComentarios.length - 1].id ); setPublicar2Iniciado(false) }}, [publicar2Iniciado])
     
     const [idcomentario, setIdComentario] = useState('')
 
@@ -58,12 +51,12 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
         return(`${day} de ${month} de ${year}, ${hour}:${minutes}`)
         
     }
-//{listadoComentariosProp2.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
+
     return (
-        <section style={{borderTop:listadoCS.length > 0? 'dotted grey' : ''}} className={styles.section}>
+        <section style={{borderTop: {if(listadoComentarios){listadoComentarios.length > 0? 'dotted grey' : ''}} }} className={styles.section}>
             <div className={styles.listadoC}>
 
-            { listadoComentariosProp2 == undefined?'' : listadoComentariosProp2.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
+            { listadoComentarios == undefined?'' : listadoComentarios.map((comentario) =>  { return <Comentario key={comentario.id} focusTextareaComentarioProp= {[focusTextareaComentario, setFocusTextareaComentario]} focusTextareaBajo2Prop= {[focusTextareaBajo2, setFocusTextareaBajo2]} scrollCom={scrollCom} {...comentario} idcomentarioP= {[idcomentario, setIdComentario]} clave={clave}/>} ) }
                
             </div>
             <div className={`${styles.caja} ${styles.caja_bajo2}`}>
@@ -90,11 +83,10 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
                                             fecha: obtenerFecha(),
                                             clave_entrada: clave
                                         }
-                                    ) 
+                                    ).then( nuevoComentario => { setListadoComentarios([...listadoComentarios, nuevoComentario ])})
                                     textoCRef.current.value = ''
-                                    setPublicar2Iniciado(true)
-                                    setNuevoComentario(true)
 
+                                    setPublicar2Iniciado(true)
                                 }
                             }
                         } 

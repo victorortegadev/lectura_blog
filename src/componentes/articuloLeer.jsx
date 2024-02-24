@@ -1,6 +1,6 @@
 'use client'
 import { useRouter} from "next/navigation";
-import { /*useEffect,*/ useRef, useState} from "react";
+import { /*useEffect,*/ useRef} from "react";
 import Bajo2 from './bajo2'
 //import { useQuill } from "react-quilljs"
 

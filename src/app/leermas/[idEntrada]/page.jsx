@@ -31,7 +31,7 @@ useEffect(()=> {pedirComentarios(props.params.idEntrada).then( comentarios=> {se
       <Header tipoEstilo={'styles2'}/>
       <div  style={{display:entrada && listadoComentarios? 'block' : 'none'}}>
         <main>
-          <ArticuloLeer {...entrada} listadoComentariosProp= {listadoComentarios} /> 
+          <ArticuloLeer {...entrada} listadoComentariosProp= {[listadoComentarios, setListadoComentarios] } /> 
         </main>
         <footer className={styles.footer}>
             <p className={styles.footer_p}>Con la tecnología de nextjs</p>

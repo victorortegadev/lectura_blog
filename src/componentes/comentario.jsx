@@ -8,7 +8,6 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     const [idcomentario, setIdComentario] = idcomentarioP
     const textoCRef = useRef(null)
     const [listaRespuestas, setListaRespuestas] = useState([])
-    const [nuevaRespuesta, setNuevaRespuesta] = useState(false)
 
     const [scrollRes, setScrollRes] = useState('')
     const [publicarIniciado, setPublicarIniciado] = useState(false)
@@ -39,7 +38,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     }
 
 
-    useEffect(()=> { id? pedirRespuestas(id).then( (comentarios)=> {setListaRespuestas(comentarios); setNuevaRespuesta(false)} ) : ''}, [nuevaRespuesta, id])
+    useEffect(()=> { id? pedirRespuestas(id).then( (comentarios)=> {setListaRespuestas(comentarios)} ) : ''}, [id])
 
     useEffect(() => {if(publicarIniciado && listaRespuestas.length > 0){ setScrollRes(listaRespuestas[listaRespuestas.length - 1].id ) }}, [listaRespuestas])
 
@@ -102,11 +101,10 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
                                             clave_entrada: clave,
                                             clave_respuesta: id
                                         }
-                                    ) 
+                                    ).then( nuevoRespuesta => { setListaRespuestas([...listaRespuestas, nuevoRespuesta ])}) 
                                     textoCRef.current.value = ''
                                     setIdComentario('') 
                                     setPublicarIniciado(true)
-                                    setNuevaRespuesta(true)
                                 }
                             
                             }
