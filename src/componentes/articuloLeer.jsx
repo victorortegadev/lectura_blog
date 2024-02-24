@@ -28,7 +28,7 @@ export default function ArticuloLeer({titulo, textoplanovisible, id, fecha, list
                 <div className={stylesLeer.nota_leer}>
                     <h3 onClick={() => {router.push(`/leermas/${id}`)}} className={stylesLeer.h3}> {titulo} </h3>
                     <button className={styles.button}> icono </button>
-                    <a onClick={() => {router.push('/leermas')}} className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</a>
+                    <p onClick={() => {router.push('/leermas')}} className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</p>
                     <div className={stylesLeer.texto}>
 
                     <div ref={quillRef} >
