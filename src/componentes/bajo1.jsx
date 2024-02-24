@@ -7,8 +7,8 @@ export default function Bajo1({id, numeroProp}) {
 
     return (
         <div className={styles.bajo}>
-            <div className={styles.boton_comentar} onClick={() => {router.push(`/leermas/${id}`)}}><a>{numeroProp > 0?  `${numeroProp} comentarios` : 'Publicar un comentario' }</a></div>
-            <a className={styles.boton_leer_mas} onClick={() => {router.push(`/leermas/${id}`)}}>LEER MAS</a>
+            <div className={styles.boton_comentar} onClick={() => {router.push(`/leermas/${id}`)}}><p>{numeroProp > 0?  `${numeroProp} comentarios` : 'Publicar un comentario' }</p></div>
+            <p className={styles.boton_leer_mas} onClick={() => {router.push(`/leermas/${id}`)}}>LEER MAS</p>
         </div>
     );
 }

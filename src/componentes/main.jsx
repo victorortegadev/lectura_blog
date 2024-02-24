@@ -51,7 +51,7 @@ export default function Main({params}) {
       <div style={{display:nueva.length > 0? 'block' : 'none'}}>
         <main className={styles.main}>    
           {nueva.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada} ultimoArticuloProp={ nueva[nueva.length - 1].id == entrada.id ? 'ultimoArticulo' : ''}/> ) }
-          <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <a className={styles.mas_a}>MÁS ENTRADAS</a></div>
+          <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <p className={styles.mas_a}>MÁS ENTRADAS</p></div>
         </main>
         <footer className={styles.footer}>
             <p className={styles.footer_p}>Con la tecnología de nextjs</p>
