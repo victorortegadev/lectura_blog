@@ -1,11 +1,9 @@
-
 .marco {
     min-height: 100%;
-   max-width: 60rem;
+    max-width: 60rem;
     margin: auto;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    z-index: 100;
+    grid-template-rows: auto 1fr;
     position: relative;
     padding: 0 1rem;
 }
@@ -13,6 +11,5 @@
     height: 480px;
     position: absolute;
     width: 100%;
-    z-index: 0;
     background-color: rgb(150, 129, 129);
 }

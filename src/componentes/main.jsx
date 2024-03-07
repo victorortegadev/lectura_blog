@@ -21,7 +21,7 @@ export default function Main({params}) {
   }
 
 
-  const pru = (inicio, final)=> {
+  const preparador = (inicio, final)=> {
    
     if(final > entrada.length){
       final = entrada.length 
@@ -41,17 +41,17 @@ export default function Main({params}) {
   }
 
   let cantidad= params? params.cantidad : 4
-  let pagina = params? params.pagina : 1
+  let pagina = params? parseInt(params.pagina) : 1
   let resta = cantidad - 1
   useEffect(() =>{pedirEntradas().then((entradas) => {setEntrada(entradas)} )},[])
-  useEffect(()=> { entrada.length > 0 ? pru((cantidad * pagina) - resta, cantidad * pagina ) : ''}, [entrada])
+  useEffect(()=> { entrada.length > 0 ? preparador((cantidad * pagina) - resta, cantidad * pagina ) : ''}, [entrada])
 
   return (
     <>
       <div style={{display:nueva.length > 0? 'block' : 'none'}}>
         <main className={styles.main}>    
           {nueva.map((entrada) => <ArticuloPrincipal key={entrada.id} {...entrada} ultimoArticuloProp={ nueva[nueva.length - 1].id == entrada.id ? 'ultimoArticulo' : ''}/> ) }
-          <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${parseInt(pagina) + 1}`)} }> <p className={styles.mas_a}>MÁS ENTRADAS</p></div>
+          <div className={styles.mas}  style={{display: displayS? 'flex' : 'none'}} onClick={() => { router.push(`/mas/${cantidad}/${pagina + 1}`)} }> <p className={styles.mas_a}>MÁS ENTRADAS</p></div>
         </main>
         <footer className={styles.footer}>
             <p className={styles.footer_p}>Con la tecnología de nextjs</p>
