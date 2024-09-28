@@ -10,13 +10,13 @@ export default function Leerid(props) {
   const [listadoComentarios, setListadoComentarios] = useState()
 
   async function  pedirEntrada (id) { 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/entrada/${id}`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/entrada/${id}`)
   
     const entradaRespuesta = await response.json()
     return entradaRespuesta 
   }
   async function  pedirComentarios(id) { 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/${id}`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comentarios/${id}`)
   
     const comentarios = await response.json()
     return comentarios

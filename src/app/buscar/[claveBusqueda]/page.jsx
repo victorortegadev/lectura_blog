@@ -9,7 +9,7 @@ export default function Leerid(props) {
     const [encontrado, setEncontrado] = useState([])
 
     async function  buscarEntradas (claveBusqueda) { 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/buscarEntradas/${claveBusqueda}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/buscarEntradas/${claveBusqueda}`)
       
         const resultado = await response.json()
         return resultado 

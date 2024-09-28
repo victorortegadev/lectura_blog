@@ -15,7 +15,7 @@ export default function Bajo2({clave, listadoComentariosProp2}) {
    // const [focusTextareaComentario, setFocusTextareaComentario] = useState(false)
 
     async function  crearCometario (comentario) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comentarios/comentario`, 
             {   
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},

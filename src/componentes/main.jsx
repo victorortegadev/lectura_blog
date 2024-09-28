@@ -14,7 +14,7 @@ export default function Main({params}) {
   const [displayS, setDisplayS] = useState(true)
 
   async function  pedirEntradas  () { 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/entradas`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/entradas`)
   
     const entradas = await response.json()
     return entradas

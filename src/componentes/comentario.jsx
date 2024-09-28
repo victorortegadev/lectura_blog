@@ -16,7 +16,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     const [focusTextarea, setFocusTextarea] = focusTextareaProp
 
     async function  crearCometario (comentario) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/comentario`, 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comentarios/comentario`, 
             {   
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -29,7 +29,7 @@ export default function Comentario({id, fecha, texto, idcomentarioP, clave, scro
     }
 
     async function  pedirRespuestas(clave) { 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_ONRENDER}/comentarios/respuestas/${clave}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comentarios/respuestas/${clave}`)
       
         const comentarios = await response.json()
         return comentarios
