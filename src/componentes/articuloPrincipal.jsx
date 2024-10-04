@@ -35,12 +35,12 @@ export default function ArticuloPrincipal({titulo, id, fecha, textoplanovisible,
             <div className={styles.post}>
                 <h3 onClick={() => {router.push(`/leermas/${id}`)}} className={stylesPrincipal.h3}> {titulo} </h3>
                 <button className={styles.button}> {id} </button>
-                <p /*onClick={() => {router.push('/leermas')}}*/ className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</p>
+                <p onClick={() => {router.push(`/leermas/${id}`)}} className={styles.fecha} >{!fecha ? 'no fecha' : fecha}</p>
                 <div ref={textoPost} className={stylesPrincipal.texto}>
 
-                  <div className={stylesPrincipal.quill} ref={alturaRef} >
-                    {textoplanovisible}
-                  </div>
+                    <div className={stylesPrincipal.quill} ref={alturaRef} >
+                        {textoplanovisible}
+                    </div>
 
                     <p  style={{display: alturaRef.current && textoPost.current? alturaRef.current.clientHeight > textoPost.current.clientHeight? 'block' : 'none' : 'none'}}
                         onClick={() => {router.push(`/leermas/${id}`)}} 

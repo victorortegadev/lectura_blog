@@ -55,11 +55,14 @@ export default function Main({params}) {
         </main>
         <footer className={styles.footer}>
             <p className={styles.footer_p}>Con la tecnología de nextjs</p>
-            <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
+            <h5 className={styles.footer_h5}>Imágenes del tema: <span>*</span> </h5>
         </footer>
       </div>
-      <div className={styles.reemplazo} style={{display:nueva.length <= 0? 'block' : 'none'}}>
-        cargando...
+      <div className={styles.contenedor_loader} style={{display:nueva.length <= 0? 'block' : 'none'}}>
+        <div>
+          <div className={styles.rueda}></div>
+        </div>
+        <div className={styles.cargando}>Cargando...</div>
       </div>
     </>
   )

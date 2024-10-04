@@ -11,7 +11,7 @@
     float: right;
 }
 .fecha {
-    
+    cursor: pointer;
 }
 .puntos{
     position: absolute;

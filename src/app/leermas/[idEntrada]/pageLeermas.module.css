@@ -12,3 +12,37 @@
 .footer_p{
    color: #2196f3;  
 }
+
+.contenedor_loader{ 
+    font-weight: 900;
+    display: grid;
+    color: #000;
+    padding-top: 5rem;
+    padding-left: 5rem;
+}
+.cargando{   
+position: relative; 
+color: #FFF;
+margin-top: 2em;
+letter-spacing: 0.08em;
+text-transform: uppercase
+}
+
+.rueda {
+border: 10px solid rgba(255, 255, 255, .3);
+border-radius: 50%;
+border-left-color: transparent;
+width: 80px;
+height: 80px;
+animation: giro 1s linear infinite;
+}
+
+@keyframes giro {
+0% {
+    transform: rotate(0deg);
+}
+
+100% {
+    transform: rotate(360deg);
+}
+}

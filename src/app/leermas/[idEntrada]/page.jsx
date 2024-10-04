@@ -38,9 +38,15 @@ useEffect(()=> {pedirComentarios(props.params.idEntrada).then( comentarios=> {se
             <h5 className={styles.footer_h5}>Imágenes del tema: <span>Michael Elkan</span> </h5>
         </footer>
       </div>
+      <div className={styles.contenedor_loader} style={{display:entrada == undefined? 'block' : 'none'}}>
+        <div>
+          <div className={styles.rueda}></div>
+        </div>
+        <div className={styles.cargando}>Cargando...</div>
+      </div>
     </>
   );
-}
+}//entrada == undefined
 /*
         <div style={{border:'solid greenyellow'}}>
 

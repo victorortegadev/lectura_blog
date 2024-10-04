@@ -5,7 +5,9 @@
 }
 .boton_comentar{
     color: #2196f3;
+    cursor: pointer;
 }
 .boton_leer_mas {
     color: #2196f3;   
+    cursor: pointer;
 }

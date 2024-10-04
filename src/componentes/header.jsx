@@ -57,7 +57,7 @@ export default function Header({tipoEstilo}) {
          {tipoEstilo == 'styles1' ? <Buscador  abrirProp= {[abrir, setAbrir]}/> : '' }
 
         </div>
-        <h1 className={`${estilo.h1} ${abrir?  estilo.desaparecer : ''}`}> Titulo del blog </h1>
+        <h1 className={`${estilo.h1} ${abrir?  estilo.desaparecer : ''}`}> Mi primer blog </h1>
 
         {tipoEstilo != 'styles1' ? <Buscador  abrirProp= {[abrir, setAbrir]}/> : '' }
 
