@@ -4,6 +4,7 @@ import styles from './header1.module.css'
 import styles2 from './header2.module.css'
 import Buscador from './buscador'
 import { useRouter } from 'next/navigation'
+import redireccionar from './redireccionar.png'
 
 export default function Header({tipoEstilo}) {
 
@@ -15,12 +16,16 @@ export default function Header({tipoEstilo}) {
   const divIconRef = useRef(null)
   const [animacionExpansion, setAnimacionExpansion] = useState({})
 
-  function porcentajeClick (e, n) {
+  const [animacionBarra, setAnimacionBarra] = useState('')
+  const barraIconRef = useRef(null)
+  const [animacionExpansionBarra, setAnimacionExpansionBarra] = useState({})
+
+  function porcentajeClick (e, n, estadoAnimacion) {
     let porcentajeX = (( Math.floor(e.clientX) - Math.floor(n.getBoundingClientRect().x)) * 100) / (n.getBoundingClientRect().width )
     let porcentajeY = (( Math.floor(e.clientY) - Math.floor(n.getBoundingClientRect().y)) * 100) / (n.getBoundingClientRect().height -1)
     
-    setAnimacionExpansion({  animation: ''})
-    setAnimacionExpansion(
+    estadoAnimacion({  animation: ''})
+    estadoAnimacion(
       {
         left: `${porcentajeX}%`,
         top: `${porcentajeY}%`,
@@ -41,9 +46,9 @@ export default function Header({tipoEstilo}) {
           <div 
             className={styles.div_icon_tres_flecha} 
             ref={divIconRef} 
-            onClick={()=> {router.push('/')}} 
+            onClick={()=> {tipoEstilo == 'styles1'? setAnimacionBarra('salir') : router.push('/')}} 
             onMouseDown={(e)=> {
-              console.log (porcentajeClick(e, divIconRef.current)) 
+              porcentajeClick(e, divIconRef.current, setAnimacionExpansion)
               setTimeout(()=> {setAnimacionExpansion({animation:''})}, 300)
             }} 
           >
@@ -61,6 +66,35 @@ export default function Header({tipoEstilo}) {
 
         {tipoEstilo != 'styles1' ? <Buscador  abrirProp= {[abrir, setAbrir]}/> : '' }
 
+      </div>
+
+      <div className={`${styles.barra_lateral} ${animacionBarra == 'salir'? styles.barra_salir :
+        animacionBarra == 'entrar'? styles.barra_entrar : ''}`}
+      >
+         <div 
+            className={`${styles.div_icon_tres_flecha} ${styles.barra_icon}`}
+            ref={barraIconRef}
+            onClick={()=> setAnimacionBarra('entrar')} 
+            onMouseDown={(e)=> {
+              porcentajeClick(e, barraIconRef.current, setAnimacionExpansionBarra)
+              setTimeout(()=> {setAnimacionExpansionBarra({animation:''})}, 300)
+            }} 
+          >
+            <svg className={`${styles.icon_tres_flecha} ${styles.barra_icon_tres_flecha}`} focusable="false" viewBox="0 0 24 24">
+              <path d= {"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"}>
+              </path>
+            </svg>       
+            <div className={`${styles.efecto_icon} ${styles.barra_efecto_icon}`} style={animacionExpansionBarra}/>
+          </div>  
+          <div className={styles.div_enlace}>
+            <a className={styles.div_a_enlace} href={process.env.NEXT_PUBLIC_URL_CONFIGURADOR} target="_blank" > <div className={styles.div_redireccionar}><img className={styles.redireccionar} src= {redireccionar.src}></img></div> <p>Editar blog</p> </a> 
+          </div>    
+      </div>
+      <div 
+        className={styles.cubierta_barra} 
+        style={{display:animacionBarra == 'salir'? 'block' : 'none'}}
+        onClick={()=> setAnimacionBarra('entrar')} 
+      >
       </div>
     </header>
   );

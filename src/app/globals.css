@@ -97,12 +97,12 @@ svg {
 }
 
 body {
-  height: 100vh;
+  
   font-size: 100%;
   /*font-family: var(--tipo-principal);*/
  /* color:var(--color-secundario);*/
   /*background-color: var(--color-primario);*/
-  background-color:  #eeeeee;
   line-height: 1.4em;
+  overflow: hidden;
 }
 

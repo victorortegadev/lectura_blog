@@ -1,5 +1,5 @@
 ## Descripción
-Esta es la parte de lectura de la app blog en la cual se pueden ver y
+Esta es la parte de lectura de la app blog en la cual se pueden ver,
 leer entradas y escribir en la caja de comentarios.
 
 ## Partes de la app blog
@@ -10,6 +10,7 @@ leer entradas y escribir en la caja de comentarios.
 ## Ver ejemplo en vivo
 - [https://lectura-blog.vercel.app/](https://lectura-blog.vercel.app/)
 - [https://configurador-blog.vercel.app/blog/entradas/](https://configurador-blog.vercel.app/blog/entradas/)
+
 ## Autor 
 **Victor Ortega**
 

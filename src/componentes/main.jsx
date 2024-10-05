@@ -13,6 +13,8 @@ export default function Main({params}) {
 
   const [displayS, setDisplayS] = useState(true)
 
+  const [loader, setLoader] = useState(true)
+
   async function  pedirEntradas  () { 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/entradas`)
   
@@ -32,6 +34,7 @@ export default function Main({params}) {
     for (let i= inicio - 1; i < final; i++) {
       suma.push(entrada[i])
     }
+    setLoader(false) 
     setNueva(suma)
 
     if(final >= entrada.length){
@@ -43,7 +46,17 @@ export default function Main({params}) {
   let cantidad= params? params.cantidad : 4
   let pagina = params? parseInt(params.pagina) : 1
   let resta = cantidad - 1
-  useEffect(() =>{pedirEntradas().then((entradas) => {setEntrada(entradas)} )},[])
+  useEffect(() =>{pedirEntradas().then((entradas) => {
+      if(entradas.length <= 0){
+        setLoader(false) 
+        setEntrada(entradas)
+      }
+      else(
+        setEntrada(entradas)
+      ) 
+    })
+  },[])
+
   useEffect(()=> { entrada.length > 0 ? preparador((cantidad * pagina) - resta, cantidad * pagina ) : ''}, [entrada])
 
   return (
@@ -58,7 +71,7 @@ export default function Main({params}) {
             <h5 className={styles.footer_h5}>Imágenes del tema: <span>*</span> </h5>
         </footer>
       </div>
-      <div className={styles.contenedor_loader} style={{display:nueva.length <= 0? 'block' : 'none'}}>
+      <div className={styles.contenedor_loader} style={{display:loader? 'block' : 'none'}}>
         <div>
           <div className={styles.rueda}></div>
         </div>

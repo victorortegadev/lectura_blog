@@ -22,7 +22,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-radius: 50%;
     overflow: hidden;
 }
@@ -52,4 +51,75 @@
         height: 200%;
         width: 200%;
      }
+}
+
+.barra_lateral{
+    z-index: 1020;
+    background-color: white;
+    position: fixed;
+    left: -17.7rem;
+    top: 0;
+    height: 100vh;
+    width: 17.7rem;
+}
+.barra_icon {
+    left: 0;
+    width: fit-content;
+}
+.barra_icon_tres_flecha{
+    color: #707070;
+}
+.barra_efecto_icon{
+    background-color: #ccc;
+}
+.barra_salir{
+    animation: salir .3s ease forwards;
+}
+.barra_entrar{
+    animation: entrar .3s ease forwards;
+}
+@keyframes salir {
+     100% {
+        left: 0px;
+     }
+}
+@keyframes entrar {
+    0%{
+        left: 0;
+    }
+    100% {
+       left: -17.7rem;
+    }
+}
+.cubierta_barra{
+    position: fixed;
+    z-index: 1010;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    opacity: .6;
+}
+.div_enlace{
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+.div_a_enlace{
+    cursor: pointer; 
+    color: #00838f;
+    font-weight: bold;
+    padding:.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div_enlace a p {
+    width: 7rem;
+    text-align: center;
+}
+.redireccionar{
+    height: 1.7rem;
+    width: 1.7rem;
 }

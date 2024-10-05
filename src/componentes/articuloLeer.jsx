@@ -1,25 +1,25 @@
 'use client'
 import { useRouter} from "next/navigation";
-import { /*useEffect,*/ useRef} from "react";
+import { useEffect/*, useRef*/} from "react";
 import Bajo2 from './bajo2'
-//import { useQuill } from "react-quilljs"
+import { useQuill } from "react-quilljs"
 
 import styles from './articulo.module.css'
 import './articulo.css'
 
 import stylesLeer from './articuloLeer.module.css'
 
-export default function ArticuloLeer({titulo, textoplanovisible, id, fecha, listadoComentariosProp}) {
+export default function ArticuloLeer({titulo, /*textoplanovisible,*/ id, fecha, listadoComentariosProp, texto}) {
 
     const router = useRouter()
 
-    /*const {quill, quillRef} = useQuill({
+    const {quill, quillRef} = useQuill({
         modules: { toolbar: false },
         readOnly: true
-    })*/
-    const quillRef = useRef(null)
+    })
+    //const quillRef = useRef(null)
     
-    //useEffect(() => { quill && texto? quill.setContents(JSON.parse(texto)) : '' }, [quill? quill : '', texto])
+    useEffect(() => { quill && texto? quill.setContents(JSON.parse(texto)) : '' }, [quill, texto])
 
 
     return (
@@ -32,7 +32,7 @@ export default function ArticuloLeer({titulo, textoplanovisible, id, fecha, list
                     <div className={stylesLeer.texto}>
 
                     <div ref={quillRef} >
-                        {textoplanovisible}
+                        {/*textoplanovisible*/}
                     </div>
 
                     </div>
